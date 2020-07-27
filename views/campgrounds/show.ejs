@@ -1,0 +1,67 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+
+	<div class="row d-flex flex-wrap">
+		<div class="col-md-3">
+			<div class="list-group">
+				<li class="list-group-item active">Item 1</li>
+				<li class="list-group-item">Item 2</li>
+				<li class="list-group-item">Item 3</li>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="card">
+				<img src="<%= campground.image %>" class="card-img-top">
+				<div class="caption-full">
+					<h3>
+						<%= campground.name %> <span class="float-right">$9.00/night</span>
+					</h3>
+				</div>
+				<div style="padding: 10px;">
+					<p>
+						Submitted by: <%= campground.author.username %>
+					</p>
+					<p>
+						<%= campground.description %>
+					</p>
+					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+						<a class="btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+						<form id="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+							<button class="btn btn-danger">
+								Delete
+							</button>
+
+						</form>
+					<% } %>
+				</div>
+			</div>
+			<div class="card" id="commentcard">
+  				<div class="card-body" id="cardbody">
+    				<h4 class="card-title">Comments<a class="btn btn-primary float-right" href="/campgrounds/<%= campground._id %>/comments/new">New Comment</a></h4>
+					<hr>
+					<% campground.comments.forEach(function(comment){ %>
+    				<h6 class="card-subtitle mb-2 text-muted"><%= comment.author.username %><span class="float-right">10 days ago</span></h6>
+    				<p class="card-text"><%= comment.text %>
+						<span class="float-right">
+							<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+								<a class="btn btn-xs 
+										  btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%= comment._id %>/edit">Edit</a>
+								<form id="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+									<button class="btn btn-danger">
+										Delete
+									</button>
+
+						</form>
+					<% } %>
+						
+						</span></p>
+					<% }) %>
+  				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%- include("../partials/footer") %>

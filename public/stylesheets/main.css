@@ -1,0 +1,48 @@
+.card img {
+	width: 100%
+}
+
+.card {
+	padding: 0;
+	margin: 10px;
+}
+
+.card-title,.card-text{
+	padding-bottom: 15px;
+}
+
+.caption-full {
+	padding: 9px;
+}
+
+.list-group {
+	margin: 10px;
+}
+
+#commentcard {
+	margin-top: 10px;
+	
+}
+
+#cardbody {
+	background: lightgrey; 
+	padding: 10px;
+}
+
+#signupform {
+	padding: 10px;
+	width: 60%;
+}
+
+#signupheader {
+	padding: 10px;
+	text-align: center;
+}
+
+.campground-header {
+	padding-left: 20px;
+}
+
+#delete-form {
+	display: inline;
+}
