@@ -10,11 +10,13 @@ var express      = require("express"),
 	User	 	 = require("./models/user"),
 	seedDB 		 = require("./seeds");
 
+require('dotenv').config();
+
 var commentRoutes = require("./routes/comments"),
 	campgroundRoutes = require("./routes/camgrounds"),
 	indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/yelpcampjbp", {
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useCreateIndex: true,
@@ -50,7 +52,6 @@ app.use(indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use(commentRoutes);
 
-app.listen(3000,function(){
-	console.log("Request Made");
+const port = process.env.PORT || 3000;
 
-});
+app.listen(port;
